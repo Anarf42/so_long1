@@ -6,7 +6,7 @@
 #    By: anruiz-d <anruiz-d@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/24 09:32:57 by anruiz-d          #+#    #+#              #
-#    Updated: 2025/03/30 15:26:28 by anruiz-d         ###   ########.fr        #
+#    Updated: 2025/03/30 19:31:48 by anruiz-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ DIR_SRCS	:=	src
 DIR_OBJS	:=	obj
 DIR_INC		:=	include
 MLX42_DIR	:=	MLX42
-MLX42_A		:=	build/$(MLX42)
+MLX42_A		:=	$(MLX42_DIR)/build/$(MLX42)
 MLX42_INC	:=	$(MLX42_DIR)/include
 
 # --- Source files --- #
@@ -54,22 +54,20 @@ endif
 #		DEFAULT TARGET		  	  #
 ###################################################
  	
-all:	$(NAME)
+all:	$(MLX42_A) $(NAME)
 		
-
 ###################################################
 #		Program Target	  #
 ###################################################
+
+$(MLX42_A):
+			cmake -B $(MLX42_DIR)/build $(MLX42_DIR)
+			cmake --build $(MLX42_DIR)/build
 
 $(NAME):	$(LONG_OBJ_FILES)
 			make -C libft
 			$(CC) $(FLAGS) $(LONG_OBJ_FILES) $(INCLUDE) libft/$(LIBFT) $(MLX42_A) $(MLX_FLAGS) -o $(NAME)
 
-
-$(MLX42_A):
-			cmake -B $(MLX42_DIR)/build $(MLX42_DIR)
-			cmake --build $(MLX42_DIR)/build
-			
 ###################################################
 #		OBJECT FILE RULE		  #
 ###################################################

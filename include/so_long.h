@@ -6,7 +6,7 @@
 /*   By: anruiz-d <anruiz-d@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 17:39:11 by anruiz-d          #+#    #+#             */
-/*   Updated: 2025/03/30 15:18:52 by anruiz-d         ###   ########.fr       */
+/*   Updated: 2025/03/30 21:28:14 by anruiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,18 @@
 # include "../libft/include/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 
-# define BLOCK_SIZE		50
-# define CARACTER		"textures/pikachu2.png"
-# define COLLECTIONABLE	"textures/pikachu.png"
-# define BACKGROUND		"textures/pikachu.png"
-# define WALL			"textures/pikachu.png"
-# define EXIT			"textures/pikachu.png"
+# define BLOCK_SIZE		40
+# define CARACTER		"textures/caracter.png"
+# define COLLECTIONABLE	"textures/collectionable.png"
+# define BACKGROUND		"textures/background.png"
+# define WALL			"textures/wall.png"
+# define EXIT_TEXTURE	"textures/exit.png"
 
-# define KEY_ESC		53
-# define KEY_DOWN		1
-# define KEY_UP			13
-# define KEY_LEFT		0
-# define KEY_RIGHT		2
+# define KEY_ESC		256
+# define KEY_DOWN		83
+# define KEY_UP			87
+# define KEY_LEFT		65
+# define KEY_RIGHT		68
 
 typedef struct s_data
 {
