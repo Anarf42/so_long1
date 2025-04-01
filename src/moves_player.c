@@ -6,7 +6,7 @@
 /*   By: anruiz-d <anruiz-d@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 14:22:26 by anruiz-d          #+#    #+#             */
-/*   Updated: 2025/03/30 21:25:39 by anruiz-d         ###   ########.fr       */
+/*   Updated: 2025/04/01 04:22:23 by anruiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,14 @@ int	ft_can_move(int keycode, t_data *data)
 	}
 	if (keycode == KEY_UP)
 	{
-		if (data->map[data->p_y + 1][data->p_x] == '1'
-		|| (data->map[data->p_y + 1][data->p_x] == 'E' && data->n_coins > 0))
+		if (data->map[data->p_y - 1][data->p_x] == '1'
+		|| (data->map[data->p_y - 1][data->p_x] == 'E' && data->n_coins > 0))
 			return (0);
 	}
 	if (keycode == KEY_DOWN)
 	{
-		if (data->map[data->p_y - 1][data->p_x] == '1'
-		|| (data->map[data->p_y - 1][data->p_x] == 'E' && data->n_coins > 0))
+		if (data->map[data->p_y + 1][data->p_x] == '1'
+		|| (data->map[data->p_y + 1][data->p_x] == 'E' && data->n_coins > 0))
 			return (0);
 	}
 	return (1);
@@ -93,7 +93,9 @@ void	ft_hook(mlx_key_data_t	key_data, void *param)
 
 	 data = (t_data *)param;
 	 keycode = key_data.key;
-	 printf("Tecla presionada: %d, acción: %d\n", keycode, key_data.action);
+	 if (key_data.action != MLX_PRESS)
+        return ;
+	 //printf("Tecla presionada: %d, acción: %d\n", keycode, key_data.action);
 	if (keycode == KEY_ESC)
 	{
 		mlx_delete_image(data->mlx, data->mlx_window);

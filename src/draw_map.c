@@ -6,7 +6,7 @@
 /*   By: anruiz-d <anruiz-d@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 00:25:15 by anruiz-d          #+#    #+#             */
-/*   Updated: 2025/03/30 21:12:35 by anruiz-d         ###   ########.fr       */
+/*   Updated: 2025/04/01 00:23:28 by anruiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,6 @@ void	ft_draw_map(t_data *data)
 	{
 		j = -1;
 		while (++j < data->chars_count)
-			ft_draw_img(data, data->map[i][j], i, j);
+			ft_draw_img(data, map[i][j], i, j);
 	}
 }
