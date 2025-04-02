@@ -6,7 +6,7 @@
 /*   By: anruiz-d <anruiz-d@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 19:23:05 by anruiz-d          #+#    #+#             */
-/*   Updated: 2025/03/30 21:12:54 by anruiz-d         ###   ########.fr       */
+/*   Updated: 2025/04/02 01:38:52 by anruiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	main(int argc, char **argv)
         ft_printf("Error\nMemory allocation failed!");
         return (1);
     }
+	init_variables(data);
+	init_images_structure(data);
 	data->map_path = argv[1];
 	ft_printf("primer data->map_path ->%s\n", data->map_path);
 	if (!ft_set_map(data) || !validate_map(data))
@@ -47,7 +49,9 @@ int	main(int argc, char **argv)
 	}
 	data->mlx_window = mlx_new_image(data->mlx, window_width, window_height);
 	mlx_key_hook(data->mlx, &ft_hook, data);
+	load_images(data);
 	ft_draw_map(data);
+	//ft_draw_player(data);
 	mlx_loop(data->mlx);
 	mlx_terminate(data->mlx);
 	exit (0);

@@ -6,9 +6,10 @@
 #    By: anruiz-d <anruiz-d@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/24 09:32:57 by anruiz-d          #+#    #+#              #
-#    Updated: 2025/03/30 19:31:48 by anruiz-d         ###   ########.fr        #
+#    Updated: 2025/04/02 15:10:59 by anruiz-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 # --- Project name --- #
 NAME	=	so_long
@@ -26,7 +27,8 @@ MLX42_INC	:=	$(MLX42_DIR)/include
 
 # --- Source files --- #
 
-LONG_SRC_FILES	=	so_long.c draw_map.c moves_player.c set_map.c validate_map.c
+LONG_SRC_FILES	=	so_long.c draw_map.c moves_player.c set_map.c validate_map.c \
+					utils.c
 
 LONG_SRC_DIR	=	$(addprefix $(DIR_SRCS)/, $(LONG_SRC_FILES))
 
@@ -37,7 +39,7 @@ LONG_OBJ_FILES	=	$(LONG_SRC_DIR:$(DIR_SRCS)/%.c=$(DIR_OBJS)/%.o)
 # --- Compiler and tools --- # 
 
 CC		=	cc
-FLAGS	=	-Wall -Wextra -Werror #cle-g3 -fsanitize=address
+FLAGS	=	-Wall -Wextra -Werror -mmacosx-version-min=15.3 -g3 -fsanitize=address
 INCLUDE = -I $(DIR_INC) -I $(MLX42_INC)
 RM		=	rm -rf
 MKDIR	=	mkdir -p
