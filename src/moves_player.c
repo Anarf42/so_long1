@@ -6,7 +6,7 @@
 /*   By: anruiz-d <anruiz-d@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 14:22:26 by anruiz-d          #+#    #+#             */
-/*   Updated: 2025/04/01 04:22:23 by anruiz-d         ###   ########.fr       */
+/*   Updated: 2025/04/04 15:24:02 by anruiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	ft_move_player(t_data *data, int keycode)
 
 	i = 0;
 	j = 0;
-	if (keycode == KEY_UP)
+	if (keycode == MLX_KEY_W)
 		i = -1;
-	if (keycode == KEY_DOWN)
+	if (keycode == MLX_KEY_S)
 		i = 1;
-	if (keycode == KEY_LEFT)
+	if (keycode == MLX_KEY_A)
 		j = -1;
-	if (keycode == KEY_RIGHT)
+	if (keycode == MLX_KEY_D)
 		j = 1;
 	data->map[data->p_y][data->p_x] = '0';
 	data->p_y += i;
@@ -49,25 +49,25 @@ void	ft_move_player(t_data *data, int keycode)
 
 int	ft_can_move(int keycode, t_data *data)
 {
-	if (keycode == KEY_RIGHT)
+	if (keycode == MLX_KEY_D)
 	{
 		if (data->map[data->p_y][data->p_x + 1] == '1'
 		|| (data->map[data->p_y][data->p_x + 1] == 'E' && data->n_coins > 0))
 			return (0);
 	}
-	if (keycode == KEY_LEFT)
+	if (keycode == MLX_KEY_A)
 	{
 		if (data->map[data->p_y][data->p_x - 1] == '1'
 		|| (data->map[data->p_y][data->p_x - 1] == 'E' && data->n_coins > 0))
 			return (0);
 	}
-	if (keycode == KEY_UP)
+	if (keycode == MLX_KEY_W)
 	{
 		if (data->map[data->p_y - 1][data->p_x] == '1'
 		|| (data->map[data->p_y - 1][data->p_x] == 'E' && data->n_coins > 0))
 			return (0);
 	}
-	if (keycode == KEY_DOWN)
+	if (keycode == MLX_KEY_S)
 	{
 		if (data->map[data->p_y + 1][data->p_x] == '1'
 		|| (data->map[data->p_y + 1][data->p_x] == 'E' && data->n_coins > 0))
@@ -88,26 +88,24 @@ void	ft_move_hook(int keycode, t_data *data)
 
 void	ft_hook(mlx_key_data_t	key_data, void *param)
 {
-	t_data *data;
-    int keycode = key_data.key;
+	t_data	*data;
+	int		keycode;
 
-	 data = (t_data *)param;
-	 keycode = key_data.key;
-	 if (key_data.action != MLX_PRESS)
-        return ;
-	 //printf("Tecla presionada: %d, acción: %d\n", keycode, key_data.action);
-	if (keycode == KEY_ESC)
+	data = (t_data *)param;
+	keycode = key_data.key;
+	if (key_data.action != MLX_PRESS)
+		return ;
+	if (keycode == MLX_KEY_ESCAPE)
 	{
 		mlx_delete_image(data->mlx, data->mlx_window);
 		exit(1);
 	}
-	if (keycode == KEY_DOWN)
+	if (keycode == MLX_KEY_S)
 		ft_move_hook(keycode, data);
-	if (keycode == KEY_LEFT)
+	if (keycode == MLX_KEY_A)
 		ft_move_hook(keycode, data);
-	if (keycode == KEY_RIGHT)
+	if (keycode == MLX_KEY_D)
 		ft_move_hook(keycode, data);
-	if (keycode == KEY_UP)
+	if (keycode == MLX_KEY_W)
 		ft_move_hook(keycode, data);
 }
-

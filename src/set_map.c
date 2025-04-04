@@ -30,7 +30,6 @@ int	ft_check_argument(t_data *data)
 	size_t	len;
 
 	len = ft_strlen(data->map_path);
-	ft_printf("segundo data->map_path ->%s\n", data->map_path);
 	if (ft_strncmp(&data->map_path[len - 4], ".ber", 4))
 		return (0);
 	return (1);
@@ -41,8 +40,6 @@ int	ft_set_map(t_data *data)
 	int	fd;
 	int	i;
 
-	data->n_moves = 0;
-	data->lines_count = 0;
 	fd = open(data->map_path, O_RDONLY);
 	if (fd == -1 || !ft_check_argument(data))
 	{
@@ -51,6 +48,8 @@ int	ft_set_map(t_data *data)
 	}
 	ft_count_lines(data, fd);
 	close(fd);
+	if (data->lines_count > MAX_ROW)
+		return (0);
 	data->map = malloc(sizeof(char *) * (data->lines_count + 1));
 	if (!data->map)
 		return (0);
@@ -58,11 +57,19 @@ int	ft_set_map(t_data *data)
 	if (fd == -1)
 		return (0);
 	i = -1;
-	while (++i < data->lines_count && data->map)
+	while (++i < data->lines_count)
+	{
 		data->map[i] = get_next_line(fd);
+		if (data->map[i] == NULL)
+			return (0);
+		if (data->map[i][0] == '\n')
+			return (0);
+	}
 	data->map[i] = NULL;
 	close(fd);
 	if (data->map)
-		data->chars_count = ft_strlen(data->map[data->lines_count - 1]);
+		data->chars_count = (int)ft_strlen(data->map[data->lines_count - 1]);
+	if (data->chars_count > MAX_COL)
+		return (0);
 	return (1);
 }

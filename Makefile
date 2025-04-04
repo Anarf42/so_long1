@@ -6,7 +6,7 @@
 #    By: anruiz-d <anruiz-d@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/24 09:32:57 by anruiz-d          #+#    #+#              #
-#    Updated: 2025/04/02 15:10:59 by anruiz-d         ###   ########.fr        #
+#    Updated: 2025/04/04 13:02:56 by anruiz-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ MLX42_INC	:=	$(MLX42_DIR)/include
 # --- Source files --- #
 
 LONG_SRC_FILES	=	so_long.c draw_map.c moves_player.c set_map.c validate_map.c \
-					utils.c
+					utils.c validate_map_01.c
 
 LONG_SRC_DIR	=	$(addprefix $(DIR_SRCS)/, $(LONG_SRC_FILES))
 
