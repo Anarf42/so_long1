@@ -35,26 +35,13 @@ int	ft_check_argument(t_data *data)
 	return (1);
 }
 
-int	ft_set_map(t_data *data)
+static	int	ft_aux_set_map(t_data *data)
 {
-	int	fd;
 	int	i;
+	int	fd;
 
 	fd = open(data->map_path, O_RDONLY);
-	if (fd == -1 || !ft_check_argument(data))
-	{
-		ft_printf("Bad extension, would be -> .ber");
-		return (0);
-	}
-	ft_count_lines(data, fd);
-	close(fd);
-	if (data->lines_count > MAX_ROW)
-		return (0);
-	data->map = malloc(sizeof(char *) * (data->lines_count + 1));
-	if (!data->map)
-		return (0);
-	fd = open(data->map_path, O_RDONLY);
-	if (fd == -1)
+	if (!fd)
 		return (0);
 	i = -1;
 	while (++i < data->lines_count)
@@ -67,6 +54,25 @@ int	ft_set_map(t_data *data)
 	}
 	data->map[i] = NULL;
 	close(fd);
+	return (1);
+}
+
+int	ft_set_map(t_data *data)
+{
+	int	fd;
+
+	fd = open(data->map_path, O_RDONLY);
+	if (fd == -1 || !ft_check_argument(data))
+		return (ft_putendl_fd("Bad extension", 2), 0);
+	ft_count_lines(data, fd);
+	close(fd);
+	if (data->lines_count > MAX_ROW)
+		return (0);
+	data->map = malloc(sizeof(char *) * (data->lines_count + 1));
+	if (!data->map)
+		return (0);
+	if (!ft_aux_set_map(data))
+		return (0);
 	if (data->map)
 		data->chars_count = (int)ft_strlen(data->map[data->lines_count - 1]);
 	if (data->chars_count > MAX_COL)

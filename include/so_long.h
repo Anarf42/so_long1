@@ -6,7 +6,7 @@
 /*   By: anruiz-d <anruiz-d@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 17:39:11 by anruiz-d          #+#    #+#             */
-/*   Updated: 2025/04/04 15:53:43 by anruiz-d         ###   ########.fr       */
+/*   Updated: 2025/04/06 18:47:19 by anruiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,8 @@ void	load_images(t_data *data);
 int		ft_is_accesible(t_data *data);
 void	ft_aux_load_images(t_data *data);
 void    ft_show_image(t_data *data, mlx_image_t *img, int j, int i);
+
+void	ft_simple_error(char *str);
+void	ft_error_and_free(t_data *data, char *str);
+void	ft_error_and_free_mlx(t_data *data, char *str);
 #endif

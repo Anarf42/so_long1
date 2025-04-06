@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anruiz-d <anruiz-d@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/21 20:54:21 by anruiz-d          #+#    #+#             */
-/*   Updated: 2025/03/27 20:01:54 by anruiz-d         ###   ########.fr       */
+/*   Created: 2025/04/06 01:05:07 by anruiz-d          #+#    #+#             */
+/*   Updated: 2025/04/06 18:46:58 by anruiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/libft.h"
+#include "../include/so_long.h"
 
-int	main(int argc, char **argv)
+void	ft_simple_error(char *str)
 {
-	if (argc != 2)
-	{
-		ft_printf("Error\n the number of arguments is incorrect!");
-		return (1);
-	}
-	
+	ft_putendl_fd(str, 2);
+	exit (255);
+}
 
-	return (0);
+void	ft_error_and_free(t_data *data, char *str)
+{
+	ft_putendl_fd(str, 2);
+	free(data);
+	exit (255);
+}
+
+void	ft_error_and_free_mlx(t_data *data, char *str)
+{
+	ft_putendl_fd(str, 2);
+	mlx_terminate(data->mlx);
+	free(data);
+	exit (255);
 }
