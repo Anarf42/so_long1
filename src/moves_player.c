@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anruiz-d <anruiz-d@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: anruiz-d <anruiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 14:22:26 by anruiz-d          #+#    #+#             */
-/*   Updated: 2025/04/06 18:23:30 by anruiz-d         ###   ########.fr       */
+/*   Updated: 2025/04/07 19:29:02 by anruiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	ft_destroy(t_data *data)
 {
 	mlx_terminate(data->mlx);
-	//mlx_delete_image(data->mlx, data->mlx_window);
 	exit(0);
 }
 
@@ -99,7 +98,6 @@ void	ft_hook(mlx_key_data_t	key_data, void *param)
 	if (keycode == MLX_KEY_ESCAPE)
 	{
 		mlx_terminate(data->mlx);
-		//mlx_delete_image(data->mlx, data->mlx_window);
 		exit(1);
 	}
 	if (keycode == MLX_KEY_S)

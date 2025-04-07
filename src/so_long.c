@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anruiz-d <anruiz-d@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: anruiz-d <anruiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 19:23:05 by anruiz-d          #+#    #+#             */
-/*   Updated: 2025/04/06 18:53:23 by anruiz-d         ###   ########.fr       */
+/*   Updated: 2025/04/07 19:33:36 by anruiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int	main(int argc, char **argv)
 	if (!data)
 		ft_simple_error("Error\nMemory allocation failed!");
 	init_variables(data);
-	init_images_structure(data);
 	data->map_path = argv[1];
+	init_images_structure(data);
 	if (!ft_set_map(data) || !validate_map(data))
-		ft_error_and_free(data, "\nError\nMap path or structure isn't valid!");
+		ft_error_and_free(data, "Error\nMap path or structure isn't valid!");
 	data->mlx = mlx_init((data->chars_count * BLOCK_SIZE),
 			(data->lines_count * BLOCK_SIZE), "so_long", true);
 	if (!data->mlx)

@@ -12,17 +12,24 @@
 
 #include "../include/so_long.h"
 
-void	ft_count_lines(t_data *data, int fd)
+int	ft_count_lines(t_data *data, int fd)
 {
 	char	*s;
+	int		flag;
 
 	s = get_next_line(fd);
+	flag = 1;
 	while (s)
 	{
+		if (s[0] == '\n' || s == NULL)
+			flag = 0;
 		data->lines_count++;
 		free(s);
 		s = get_next_line(fd);
 	}
+	if (flag == 0)
+		data->lines_count = 0;
+	return (flag);
 }
 
 int	ft_check_argument(t_data *data)
@@ -45,13 +52,7 @@ static	int	ft_aux_set_map(t_data *data)
 		return (0);
 	i = -1;
 	while (++i < data->lines_count)
-	{
 		data->map[i] = get_next_line(fd);
-		if (data->map[i] == NULL)
-			return (0);
-		if (data->map[i][0] == '\n')
-			return (0);
-	}
 	data->map[i] = NULL;
 	close(fd);
 	return (1);
@@ -63,12 +64,13 @@ int	ft_set_map(t_data *data)
 
 	fd = open(data->map_path, O_RDONLY);
 	if (fd == -1 || !ft_check_argument(data))
-		return (ft_putendl_fd("Bad extension", 2), 0);
-	ft_count_lines(data, fd);
+		return (close(fd), 0);
+	if (!ft_count_lines(data, fd))
+		return (close(fd), 0);
 	close(fd);
 	if (data->lines_count > MAX_ROW)
 		return (0);
-	data->map = malloc(sizeof(char *) * (data->lines_count + 1));
+	data->map = ft_calloc((data->lines_count + 1), sizeof(char *));
 	if (!data->map)
 		return (0);
 	if (!ft_aux_set_map(data))

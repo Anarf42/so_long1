@@ -39,7 +39,7 @@ LONG_OBJ_FILES	=	$(LONG_SRC_DIR:$(DIR_SRCS)/%.c=$(DIR_OBJS)/%.o)
 # --- Compiler and tools --- # 
 
 CC		=	cc
-FLAGS	=	-Wall -Wextra -Werror -mmacosx-version-min=15.3 -g3 -fsanitize=address
+FLAGS	=	-Wall -Wextra -Werror -g3 #-fsanitize=address #-mmacosx-version-min=15.3 
 INCLUDE = -I $(DIR_INC) -I $(MLX42_INC)
 RM		=	rm -rf
 MKDIR	=	mkdir -p

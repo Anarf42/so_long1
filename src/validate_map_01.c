@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map_01.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anruiz-d <anruiz-d@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: anruiz-d <anruiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 15:20:32 by anruiz-d          #+#    #+#             */
-/*   Updated: 2025/04/06 18:15:37 by anruiz-d         ###   ########.fr       */
+/*   Updated: 2025/04/07 19:50:25 by anruiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,13 @@
 
 void	flood_fill(t_data *data, char **copy_map, int x, int y)
 {
+	printf("%s\n", copy_map[x]);
 	if (x < 0 || y < 0 || x >= data->lines_count || y >= data->chars_count)
 		return ;
-	if (copy_map[x][y] == '1' || copy_map[x][y] == 'X')
+	if (copy_map[x][y] == 'E')
+		copy_map[x][y] = 'e';
+	if (copy_map[x][y] == '1' || copy_map[x][y] == 'X' || copy_map[x][y] == 'E'
+		|| copy_map[x][y] == 'e')
 		return ;
 	copy_map[x][y] = 'X';
 	flood_fill(data, copy_map, x + 1, y);
@@ -36,11 +40,26 @@ static	int	ft_aux_is_accesible(t_data *data, char **copy_map)
 		j = -1;
 		while (++j < data->chars_count)
 		{
-			if (copy_map[i][j] != 'X' && copy_map[i][j] != '1')
+			if (copy_map[i][j] != 'X' && copy_map[i][j] != '1'
+			&& copy_map[i][j] != 'e')
 				return (0);
 		}
 	}
 	return (1);
+}
+
+char	**ft_free(char **s, int i)
+{
+	int	j;
+
+	j = 0;
+	while (j < i)
+	{
+		free(s[j]);
+		j++;
+	}
+	free(s);
+	return (NULL);
 }
 
 int	ft_is_accesible(t_data *data)
@@ -63,6 +82,6 @@ int	ft_is_accesible(t_data *data)
 	copy_map[i] = NULL;
 	flood_fill(data, copy_map, data->p_y, data->p_x);
 	if (!ft_aux_is_accesible(data, copy_map))
-		return (0);
-	return (free(copy_map), 1);
+		return (ft_free(copy_map, data->lines_count), 0);
+	return (ft_free(copy_map, data->lines_count), 1);
 }

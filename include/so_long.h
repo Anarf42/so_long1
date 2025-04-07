@@ -69,4 +69,5 @@ void    ft_show_image(t_data *data, mlx_image_t *img, int j, int i);
 void	ft_simple_error(char *str);
 void	ft_error_and_free(t_data *data, char *str);
 void	ft_error_and_free_mlx(t_data *data, char *str);
+char	**ft_free(char **s, int i);
 #endif
