@@ -19,9 +19,11 @@ int	ft_count_lines(t_data *data, int fd)
 
 	s = get_next_line(fd);
 	flag = 1;
+	if (s == NULL)
+		return (0);
 	while (s)
 	{
-		if (s[0] == '\n' || s == NULL)
+		if (s == NULL || s[0] == '\n')
 			flag = 0;
 		data->lines_count++;
 		free(s);
@@ -29,6 +31,7 @@ int	ft_count_lines(t_data *data, int fd)
 	}
 	if (flag == 0)
 		data->lines_count = 0;
+	free(s);
 	return (flag);
 }
 
@@ -50,10 +53,12 @@ static	int	ft_aux_set_map(t_data *data)
 	fd = open(data->map_path, O_RDONLY);
 	if (!fd)
 		return (0);
-	i = -1;
-	while (++i < data->lines_count)
+	i = 0;
+	while (i <= data->lines_count)
+	{
 		data->map[i] = get_next_line(fd);
-	data->map[i] = NULL;
+		i++;
+	}
 	close(fd);
 	return (1);
 }

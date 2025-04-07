@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anruiz-d <anruiz-d@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: anruiz-d <anruiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 00:25:15 by anruiz-d          #+#    #+#             */
-/*   Updated: 2025/04/04 15:22:20 by anruiz-d         ###   ########.fr       */
+/*   Updated: 2025/04/07 22:45:05 by anruiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 
 void	load_images(t_data *data)
 {
+	if ((open(CARACTER, O_RDONLY) == -1) || (open(WALL, O_RDONLY) == -1)
+		|| (open(COLLECTIONABLE, O_RDONLY) == -1)
+		|| (open(BACKGROUND, O_RDONLY) == -1)
+		|| (open(EXIT_TEXTURE, O_RDONLY) == -1))
+	{
+		perror("Texturas");
+		mlx_terminate(data->mlx);
+		ft_error_and_free(data, "error, falta imagen o fallan permisos");
+	}
 	data->images->tex_character = mlx_load_png(CARACTER);
 	data->images->tex_collectible = mlx_load_png(COLLECTIONABLE);
 	data->images->tex_floor = mlx_load_png(BACKGROUND);
@@ -24,9 +33,7 @@ void	load_images(t_data *data)
 		|| !data->images->tex_exit)
 	{
 		mlx_terminate(data->mlx);
-		free(data);
-		printf("error, falta imagen o fallan permisos");
-		exit(255);
+		ft_error_and_free(data, "error, falta imagen o fallan permisos");
 	}
 	ft_aux_load_images(data);
 }

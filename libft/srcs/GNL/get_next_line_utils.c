@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anruiz-d <anruiz-d@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: anruiz-d <anruiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 19:40:04 by anruiz-d          #+#    #+#             */
-/*   Updated: 2025/02/08 11:56:59 by anruiz-d         ###   ########.fr       */
+/*   Updated: 2025/04/07 21:55:31 by anruiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ char	*ft_strchr(char *str, int c)
 		return (NULL);
 }
 */
+
 char	*ft_gnl_strjoin(char *s1, char *s2)
 {
 	size_t	i;

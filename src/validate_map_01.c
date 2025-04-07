@@ -6,7 +6,7 @@
 /*   By: anruiz-d <anruiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 15:20:32 by anruiz-d          #+#    #+#             */
-/*   Updated: 2025/04/07 19:50:25 by anruiz-d         ###   ########.fr       */
+/*   Updated: 2025/04/07 22:46:28 by anruiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	flood_fill(t_data *data, char **copy_map, int x, int y)
 {
-	printf("%s\n", copy_map[x]);
 	if (x < 0 || y < 0 || x >= data->lines_count || y >= data->chars_count)
 		return ;
 	if (copy_map[x][y] == 'E')
@@ -52,12 +51,9 @@ char	**ft_free(char **s, int i)
 {
 	int	j;
 
-	j = 0;
-	while (j < i)
-	{
+	j = -1;
+	while (++j <= i)
 		free(s[j]);
-		j++;
-	}
 	free(s);
 	return (NULL);
 }

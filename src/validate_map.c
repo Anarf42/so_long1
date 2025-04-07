@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anruiz-d <anruiz-d@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: anruiz-d <anruiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 21:31:45 by anruiz-d          #+#    #+#             */
-/*   Updated: 2025/04/04 15:50:15 by anruiz-d         ###   ########.fr       */
+/*   Updated: 2025/04/07 22:45:56 by anruiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,8 @@ int	validate_map_player(t_data *data)
 
 int	validate_map(t_data *data)
 {
-	if (!validate_map_player(data) || !ft_check_border(data)
-		|| !ft_check_map_shape(data) || !ft_check_map_values(data)
+	if (!validate_map_player(data) || !ft_check_map_shape(data)
+		|| !ft_check_border(data) || !ft_check_map_values(data)
 		|| !ft_is_accesible(data))
 		return (0);
 	return (1);
